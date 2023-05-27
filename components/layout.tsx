@@ -1,13 +1,20 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "./layout.module.css";
+import styles from "../styles/layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
+import React from "react";
 
 const name = "Rose";
 export const siteTitle = "Margana";
 
-export default function Layout({ children, home }) {
+export default function Layout({
+  children,
+  home,
+}: {
+  children: React.ReactNode;
+  home?: boolean;
+}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,8 +23,6 @@ export default function Layout({ children, home }) {
           name="description"
           content="Learn how to build a personal website using Next.js"
         />
-        <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className="styles.header">
         {home ? (
