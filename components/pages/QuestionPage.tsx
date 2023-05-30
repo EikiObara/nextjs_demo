@@ -5,6 +5,7 @@ import CardContainer from "../molecules/CardContainer";
 import { useCallback, useState } from "react";
 import Game from "../organisms/Game";
 import AnswerContainer from "../molecules/AnswerContainer";
+import HintSentence from "../atoms/HintSentence";
 
 const QuestionPage = ({ question }: { question: Question }) => {
   const [answerOrder, setAnswerOrder] = useState<string[]>([]);
@@ -34,6 +35,7 @@ const QuestionPage = ({ question }: { question: Question }) => {
     <AppTemplate>
       <Game
         confirmElement={<AnswerContainer answers={answerOrder} />}
+        hintElement={<HintSentence hint={question.text.hint} />}
         inputElement={<CardContainer cards={clickableCards} />}
       />
     </AppTemplate>
