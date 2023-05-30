@@ -6,19 +6,26 @@ import { shuffleString } from "./shuffle";
 const quizDirectory = path.join(process.cwd(), "public/quiz");
 
 const getRandomInt = (max: number) => {
+  console.log(max);
   return Math.floor(Math.random() * max);
 };
 
-export const getQuestion = async (): Promise<Question> => {
+export const getQuiz = (): Quiz => {
   const file = fs.readFileSync(
     path.join(quizDirectory, "japanese.json"),
     "utf8"
   );
   const quizData: QuizData = JSON.parse(file);
 
-  const quizNumber: number = getRandomInt(quizData.quiz.length);
+  const level: number = getRandomInt(quizData.quiz.length);
 
-  const quiz: Quiz = quizData.quiz[0].data[quizNumber];
+  const quizList = quizData.quiz[level].data;
+
+  return quizList[getRandomInt(quizList.length)];
+}
+
+export const getQuestion = async (): Promise<Question> => {
+  const quiz = getQuiz();
 
   return {
     text: {

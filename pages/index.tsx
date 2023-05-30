@@ -1,19 +1,13 @@
-import { getQuestion } from "../lib/quiz";
-import { Question } from "../lib/models";
 import QuestionPage from "../components/pages/QuestionPage";
+import useQuestion from "../lib/useQuestion";
 
-const Index = ({ question }: { question: Question }) => {
-  return (
-    <QuestionPage question={question}/>
+const Index = () => {
+  const [question, reloadQuestion] = useQuestion();
+  return question ? (
+    <QuestionPage question={question} reloadQuestion={reloadQuestion} />
+  ) : (
+    <div>Loading ...</div>
   );
-};
-
-export const getStaticProps = async () => {
-  return {
-    props: {
-      question: await getQuestion(),
-    },
-  };
 };
 
 export default Index;
