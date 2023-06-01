@@ -1,0 +1,25 @@
+.characterCard {
+  // card
+  padding: 1vw;
+
+  border: 0.1rem solid #aaa;
+  border-radius: 3px;
+
+  box-shadow: 0.1vw 0.1vw 0.1vw 0.1rem #eee;
+
+  // text
+  font-size: 3rem;
+  font-weight: bolder;
+  vertical-align: middle;
+
+  // misc
+  user-select: none;
+
+  &:active {
+    box-shadow: none;
+  }
+
+  &:active, &:hover {
+    cursor: pointer;
+  }
+}
