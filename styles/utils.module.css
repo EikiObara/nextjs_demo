@@ -1,24 +1,24 @@
 .title {
-  font-size: 3rem;
+  font-size: 3em;
   font-weight: bold;
 }
 
 .heading {
-  font-size: 3rem;
+  font-size: 3em;
   font-weight: normal;
 }
 
 .article {
-  font-size: 2rem;
+  font-size: 2em;
   font-weight: lighter;
 }
 
 .text {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: normal;
 }
 
 .sentence {
-  font-size: 1rem;
+  font-size: 1em;
   font-weight: lighter;
 }

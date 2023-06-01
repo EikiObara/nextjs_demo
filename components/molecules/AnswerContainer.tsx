@@ -4,9 +4,7 @@ import utilStyles from "../../styles/utils.module.css";
 const AnswerContainer = ({ answers }: { answers: string[] }) => {
   return (
     <div className={styles.answerContainer}>
-      <div className={styles.answer}>
-        <div className={utilStyles.heading}>{answers}</div>
-      </div>
+      <div className={utilStyles.heading}>{answers}</div>
     </div>
   );
 };
