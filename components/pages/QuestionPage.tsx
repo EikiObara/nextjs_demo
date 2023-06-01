@@ -52,25 +52,21 @@ const QuestionPage = ({
   }
 
   return (
-    <AppTemplate>
-      <Game
-        confirmElement={
-          <AnswerContainer answers={gameParameters.answerOrder} />
-        }
-        hintElement={<HintSentence hint={question.text.hint} />}
-        inputElement={
-          gameParameters.gameState === GAME_STATE.IN_GAME ? (
-            <CardContainer cards={clickableCards} />
-          ) : (
-            <ResultContainer
-              gameResult={gameParameters.gameResult}
-              originalWord={question.text.original}
-            />
-          )
-        }
-        buttonElement={<HorizontalButtons buttons={buttons} />}
-      />
-    </AppTemplate>
+    <Game
+      confirmElement={<AnswerContainer answers={gameParameters.answerOrder} />}
+      hintElement={<HintSentence hint={question.text.hint} />}
+      inputElement={
+        gameParameters.gameState === GAME_STATE.IN_GAME ? (
+          <CardContainer cards={clickableCards} />
+        ) : (
+          <ResultContainer
+            gameResult={gameParameters.gameResult}
+            originalWord={question.text.original}
+          />
+        )
+      }
+      buttonElement={<HorizontalButtons buttons={buttons} />}
+    />
   );
 };
 
