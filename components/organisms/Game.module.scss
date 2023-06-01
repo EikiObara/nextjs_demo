@@ -7,6 +7,10 @@
   align-items: center;
 
   .confirmElement {
+    width: 100%;
+  }
+
+  .hintElement {
     flex: 1 1 0;
     display: flex;
     justify-content: center;
@@ -23,8 +27,6 @@
   }
 
   .buttonElements {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
   }
 }

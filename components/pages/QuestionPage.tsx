@@ -1,5 +1,5 @@
 import AppTemplate from "../templates/AppTemplate";
-import { GAME_RESULT, GAME_STATE, Question } from "../../lib/models";
+import { GAME_STATE, Question } from "../../lib/models";
 import CharacterCard from "../atoms/CharacterCard";
 import CardContainer from "../molecules/CardContainer";
 import Game from "../organisms/Game";
@@ -18,7 +18,10 @@ const QuestionPage = ({
   reloadQuestion: () => void;
 }) => {
   // NOTE: game controller
-  const [gameParameters, gameCallbacks] = useGameParameters(question);
+  const [gameParameters, gameCallbacks] = useGameParameters(
+    question,
+    reloadQuestion
+  );
 
   // NOTE: rendering
   const clickableCards = gameParameters.words.map((character, index) => (
@@ -28,15 +31,22 @@ const QuestionPage = ({
   ));
 
   const buttons = [
-    <div onClick={() => gameCallbacks.reset(question)}>
-      <Button text="リセット" />
-    </div>,
+    <HorizontalButtons
+      buttons={[
+        <div onClick={() => gameCallbacks.reset(question)}>
+          <Button text="リセット" />
+        </div>,
+        <div onClick={() => gameCallbacks.giveUp()}>
+          <Button text="ギブ" />
+        </div>,
+      ]}
+    />,
   ];
 
   if (gameParameters.gameState === GAME_STATE.FINISHED) {
     buttons.push(
-      <div onClick={reloadQuestion}>
-        <Button text="次へ" />
+      <div onClick={gameCallbacks.next}>
+        <Button text="次の問題" />
       </div>
     );
   }
@@ -53,7 +63,7 @@ const QuestionPage = ({
             <CardContainer cards={clickableCards} />
           ) : (
             <ResultContainer
-              isCorrect={gameParameters.isCorrect === GAME_RESULT.CORRECT}
+              gameResult={gameParameters.gameResult}
               originalWord={question.text.original}
             />
           )

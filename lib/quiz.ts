@@ -6,13 +6,12 @@ import { shuffleString } from "./shuffle";
 const quizDirectory = path.join(process.cwd(), "public/quiz");
 
 const getRandomInt = (max: number) => {
-  console.log(max);
   return Math.floor(Math.random() * max);
 };
 
 export const getQuiz = (): Quiz => {
   const file = fs.readFileSync(
-    path.join(quizDirectory, "japanese.json"),
+    path.join(quizDirectory, "programming.json"),
     "utf8"
   );
   const quizData: QuizData = JSON.parse(file);

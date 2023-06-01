@@ -6,7 +6,7 @@ export const GAME_STATE = {
 export type GameState = (typeof GAME_STATE)[keyof typeof GAME_STATE];
 
 export const GAME_RESULT = {
-  IN_GAME: "IN_GAME",
+  UNDEFINED: "UNDEFINED",
   CORRECT: "CORRECT",
   WRONG: "WRONG",
 } as const;

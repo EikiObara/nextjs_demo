@@ -12,22 +12,25 @@ export type GameParameter = {
   answerOrder: string[];
   words: string[];
   gameState: GameState;
-  isCorrect: GameResult;
+  gameResult: GameResult;
 };
 
 export type GameCallbacks = {
   clickCard: (character: string, index: number) => void;
   reset: (question: Question) => void;
+  next: () => void;
+  giveUp: () => void;
 };
 
 const useGameParameters = (
-  question: Question
+  question: Question,
+  reloadQuestion: () => void
 ): [GameParameter, GameCallbacks] => {
   // NOTE: states
   const [answerOrder, setAnswerOrder] = useState<string[]>([]);
   const [words, setWords] = useState<string[]>([]);
   const [gameState, setGameState] = useState<GameState>(GAME_STATE.IN_GAME);
-  const [isCorrect, setIsCorrect] = useState<GameResult>(GAME_RESULT.IN_GAME);
+  const [gameResult, setGameResult] = useState<GameResult>(GAME_RESULT.UNDEFINED);
 
   // NOTE: User interface
   const clickCard = useCallback(
@@ -49,15 +52,27 @@ const useGameParameters = (
       setAnswerOrder([]);
       setWords(question.text.shuffled);
       setGameState(GAME_STATE.IN_GAME);
-      setIsCorrect(GAME_RESULT.IN_GAME);
+      setGameResult(GAME_RESULT.UNDEFINED);
     },
-    [setAnswerOrder, setWords, setGameState, setIsCorrect]
+    [setAnswerOrder, setWords, setGameState, setGameResult]
+  );
+
+  const next = useCallback(() => {
+    reloadQuestion();
+  }, [reloadQuestion]);
+
+  const giveUp = useCallback(
+    () => {
+      setGameState(GAME_STATE.FINISHED);
+      setGameResult(GAME_RESULT.UNDEFINED);
+    },
+    [setAnswerOrder, setWords, setGameState, setGameResult]
   );
 
   // NOTE: auto update process
   useEffect(() => {
     if (question) {
-      setWords(question.text.shuffled);
+      reset(question);
     }
   }, [question]);
 
@@ -65,19 +80,21 @@ const useGameParameters = (
     if (question.text.length === answerOrder.length) {
       const judger: GameJudger = new GameJudger();
       if (judger.isCollect(question.text.original, answerOrder)) {
-        setIsCorrect(GAME_RESULT.CORRECT);
+        setGameResult(GAME_RESULT.CORRECT);
       } else {
-        setIsCorrect(GAME_RESULT.WRONG);
+        setGameResult(GAME_RESULT.WRONG);
       }
       setGameState(GAME_STATE.FINISHED);
     }
-  }, [question, answerOrder, setIsCorrect, setGameState]);
+  }, [question, answerOrder, setGameResult, setGameState]);
 
   return [
-    { answerOrder, words, gameState, isCorrect },
+    { answerOrder, words, gameState, gameResult },
     {
       clickCard,
       reset,
+      next,
+      giveUp,
     },
   ];
 };

@@ -13,6 +13,11 @@
   font-weight: lighter;
 }
 
+.text {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
 .sentence {
   font-size: 1rem;
   font-weight: lighter;

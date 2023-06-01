@@ -1,7 +1,5 @@
 class GameJudger {
   isSame(question: string, answerOrder: string[]) {
-    console.log(question);
-    console.log(answerOrder.join(""));
     return question === answerOrder.join("");
   }
   
