@@ -1,16 +1,19 @@
-.borderCircle {
-  border: 1px solid #aaa;
-  border-radius: 50%;
-  overflow: hidden;
+.title {
+  font-size: 3rem;
+  font-weight: bold;
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.heading {
+  font-size: 3rem;
+  font-weight: normal;
 }
 
-.centerLargeCardsContainer {
-  display: flex;
-  justify-content: center;
+.article {
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+.sentence {
+  font-size: 1rem;
+  font-weight: lighter;
 }

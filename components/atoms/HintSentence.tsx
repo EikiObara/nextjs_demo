@@ -1,4 +1,5 @@
 import styles from "./HintSentence.module.scss";
+import utilStyles from "../../styles/utils.module.css"
 import Image from "next/image";
 
 const HintSentence = ({ hint }: { hint: string }) => {
@@ -8,11 +9,11 @@ const HintSentence = ({ hint }: { hint: string }) => {
         <Image
           src="/images/light_bulb.png"
           alt="(!)"
-          width={18}
-          height={18}
+          width={20}
+          height={20}
         />
       </div>
-      <div>{hint}</div>
+      <div className={utilStyles.sentence}>{hint}</div>
     </div>
   );
 };

@@ -1,12 +1,11 @@
 .answerContainer {
   width: 100%;
-  padding-bottom: 1vh;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #000;
 
   .answer {
-    font-size: 3rem;
+    height: 9vh;
   }
 }

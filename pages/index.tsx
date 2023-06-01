@@ -3,11 +3,7 @@ import useQuestion from "../lib/useQuestion";
 
 const Index = () => {
   const [question, reloadQuestion] = useQuestion();
-  return question ? (
-    <QuestionPage question={question} reloadQuestion={reloadQuestion} />
-  ) : (
-    <div>Loading ...</div>
-  );
+  return question ? <QuestionPage question={question} reloadQuestion={reloadQuestion} /> : null;
 };
 
 export default Index;

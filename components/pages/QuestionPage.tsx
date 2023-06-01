@@ -1,11 +1,5 @@
 import AppTemplate from "../templates/AppTemplate";
-import {
-  GAME_RESULT,
-  GAME_STATE,
-  GameResult,
-  GameState,
-  Question,
-} from "../../lib/models";
+import { GAME_RESULT, GAME_STATE, Question } from "../../lib/models";
 import CharacterCard from "../atoms/CharacterCard";
 import CardContainer from "../molecules/CardContainer";
 import Game from "../organisms/Game";
@@ -14,6 +8,7 @@ import HintSentence from "../atoms/HintSentence";
 import HorizontalButtons from "../organisms/HorizontalButtons";
 import Button from "../atoms/Button";
 import useGameParameters from "../../lib/useGameParameters";
+import ResultContainer from "../molecules/Result";
 
 const QuestionPage = ({
   question,
@@ -22,8 +17,8 @@ const QuestionPage = ({
   question: Question;
   reloadQuestion: () => void;
 }) => {
-  // NOTE: state
-  const [gameParameters, gameCallbacks] = useGameParameters(question, reloadQuestion);
+  // NOTE: game controller
+  const [gameParameters, gameCallbacks] = useGameParameters(question);
 
   // NOTE: rendering
   const clickableCards = gameParameters.words.map((character, index) => (
@@ -31,6 +26,20 @@ const QuestionPage = ({
       <CharacterCard character={character} />
     </div>
   ));
+
+  const buttons = [
+    <div onClick={() => gameCallbacks.reset(question)}>
+      <Button text="リセット" />
+    </div>,
+  ];
+
+  if (gameParameters.gameState === GAME_STATE.FINISHED) {
+    buttons.push(
+      <div onClick={reloadQuestion}>
+        <Button text="次へ" />
+      </div>
+    );
+  }
 
   return (
     <AppTemplate>
@@ -43,27 +52,13 @@ const QuestionPage = ({
           gameParameters.gameState === GAME_STATE.IN_GAME ? (
             <CardContainer cards={clickableCards} />
           ) : (
-            <div style={{ fontSize: "3rem" }}>
-              {gameParameters.isCorrect === GAME_RESULT.CORRECT
-                ? "正解"
-                : "不正解"}
-            </div>
+            <ResultContainer
+              isCorrect={gameParameters.isCorrect === GAME_RESULT.CORRECT}
+              originalWord={question.text.original}
+            />
           )
         }
-        buttonElement={
-          <HorizontalButtons
-            buttons={[
-              <div onClick={gameCallbacks.reset}>
-                <Button text="リセット" />
-              </div>,
-              <div onClick={()=> {
-                reloadQuestion();
-              }}>
-                <Button text="次へ" />
-              </div>,
-            ]}
-          />
-        }
+        buttonElement={<HorizontalButtons buttons={buttons} />}
       />
     </AppTemplate>
   );
