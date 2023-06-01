@@ -1,6 +1,6 @@
 {
-  "name": "Margana",
-  "short_name": "Margana",
+  "name": "プログラム書いてるとよく聞く言葉クイズ",
+  "short_name": "プログラマクイズ",
   "description": "This is Anagram game",
   "start_url": "/",
   "display": "standalone",
