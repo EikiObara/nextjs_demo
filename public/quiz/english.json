@@ -1,0 +1,34 @@
+{
+  "quiz":[
+    {
+      "level": 1,
+      "data": [
+        { "text": "listen", "hint": "五感" },
+        { "text": "silent", "hint": "静寂" },
+        { "text": "actor", "hint": "舞台で演じる人" },
+        { "text": "heart", "hint": "体のポンプ" },
+        { "text": "dream", "hint": "眠っている間の出来事" },
+        { "text": "earth", "hint": "私たちが住んでいる惑星" },
+        { "text": "angel", "hint": "天使" },
+        { "text": "sword", "hint": "戦いで使われる武器" },
+        { "text": "mouse", "hint": "小さなげっ歯類" },
+        { "text": "bread", "hint": "パン" }
+      ]
+    },
+    {
+      "level": 2,
+      "data": [
+        { "text": "exquisite", "hint": "非常に洗練された" },
+        { "text": "ambiguous", "hint": "あいまいな" },
+        { "text": "phenomenal", "hint": "驚くべき" },
+        { "text": "magnificent", "hint": "壮大な" },
+        { "text": "intricate", "hint": "複雑な" },
+        { "text": "formidable", "hint": "手ごわい" },
+        { "text": "resilient", "hint": "回復力のある" },
+        { "text": "eloquent", "hint": "雄弁な" },
+        { "text": "tenacious", "hint": "頑固な" },
+        { "text": "perplexing", "hint": "困惑させる" }
+      ]
+    }
+  ]
+}

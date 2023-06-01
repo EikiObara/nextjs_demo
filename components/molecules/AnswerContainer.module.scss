@@ -1,0 +1,11 @@
+.answerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #000;
+
+  .answer {
+    height: 9vh;
+  }
+}
