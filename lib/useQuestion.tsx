@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Question } from "./models";
 
-const MAX_FETCH_RETRY = 10;
+const MAX_FETCH_RETRY = 100;
 
 const isNewQuestion = (pasts: string[], question: Question) => {
   return pasts.includes(question.text.original);
