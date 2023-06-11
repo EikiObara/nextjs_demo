@@ -24,7 +24,7 @@ export type GameCallbacks = {
 
 const useGameParameters = (
   question: Question,
-  reloadQuestion: () => void
+  reloadQuestion: () => void,
 ): [GameParameter, GameCallbacks] => {
   // NOTE: states
   const [answerOrder, setAnswerOrder] = useState<string[]>([]);
@@ -56,10 +56,6 @@ const useGameParameters = (
     },
     [setAnswerOrder, setWords, setGameState, setGameResult]
   );
-
-  const next = useCallback(() => {
-    reloadQuestion();
-  }, [reloadQuestion]);
 
   const giveUp = useCallback(
     () => {
@@ -93,7 +89,7 @@ const useGameParameters = (
     {
       clickCard,
       reset,
-      next,
+      next: reloadQuestion,
       giveUp,
     },
   ];
