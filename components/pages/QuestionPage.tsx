@@ -1,4 +1,3 @@
-import AppTemplate from "../templates/AppTemplate";
 import { GAME_STATE, Question } from "../../lib/models";
 import CharacterCard from "../atoms/CharacterCard";
 import CardContainer from "../molecules/CardContainer";
@@ -9,6 +8,9 @@ import HorizontalButtons from "../organisms/HorizontalButtons";
 import Button from "../atoms/Button";
 import useGameParameters from "../../lib/useGameParameters";
 import ResultContainer from "../molecules/Result";
+import BackButton from "../molecules/BackButton";
+import Link from "next/link";
+import { useMemo } from "react";
 
 const QuestionPage = ({
   question,
@@ -43,16 +45,26 @@ const QuestionPage = ({
     />,
   ];
 
-  if (gameParameters.gameState === GAME_STATE.FINISHED) {
-    buttons.push(
+  const nextButton = useMemo(
+    () => (
       <div onClick={gameCallbacks.next}>
         <Button text="次の問題" />
       </div>
-    );
+    ),
+    []
+  );
+
+  if (gameParameters.gameState === GAME_STATE.FINISHED) {
+    buttons.push(nextButton);
   }
 
   return (
     <Game
+      headerElement={
+        <Link href="/">
+          <BackButton />
+        </Link>
+      }
       confirmElement={<AnswerContainer answers={gameParameters.answerOrder} />}
       hintElement={<HintSentence hint={question.text.hint} />}
       inputElement={

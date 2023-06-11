@@ -1,9 +1,7 @@
-import QuestionPage from "../components/pages/QuestionPage";
-import useQuestion from "../lib/useQuestion";
+import HomePage from "../components/pages/HomePage";
 
 const Index = () => {
-  const [question, reloadQuestion] = useQuestion();
-  return question ? <QuestionPage question={question} reloadQuestion={reloadQuestion} /> : null;
+  return <HomePage/>;
 };
 
 export default Index;

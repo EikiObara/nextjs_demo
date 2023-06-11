@@ -1,4 +1,4 @@
-import { SITE_TITLE } from "../../consts";
+import { SITE_TITLE } from "../../lib/constants";
 
 const HeadInfo = (): JSX.Element => (
   <>

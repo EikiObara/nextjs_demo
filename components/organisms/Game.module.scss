@@ -1,32 +1,44 @@
 .game {
-  width: 80%;
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-  .confirmElement {
-    width: 100%;
-  }
-
-  .hintElement {
-    flex: 1 1 0;
+  .header {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    width: 100%;
   }
 
-  .inputElement {
-    flex: 1 1 0;
+  .main {
+    width: 80%;
+    height: 100%;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
+    flex-direction: column;
+    margin: 0 auto;
 
-  .buttonElements {
-    width: 100%;
+    .confirmElement {
+      min-height: 10vh;
+      width: 100%;
+    }
+
+    .hintElement {
+      flex: 1 0 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .inputElement {
+      flex: 1 0 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .buttonElements {
+      width: 100%;
+    }
   }
 }
