@@ -10,7 +10,7 @@ const HomePage = () => {
         <div className={fontStyles.title}>{SITE_TITLE}</div>
       </div>
       <div className={styles.buttons}>
-        <LinkButton text="始める" url={SITE_MAP.QUESTION} />
+        <LinkButton text="始める" url={SITE_MAP.QUESTION_GAME} />
       </div>
     </div>
   );
