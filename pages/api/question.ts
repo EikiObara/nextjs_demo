@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getQuiz } from "../../lib/quiz";
-import { shuffleString } from "../../lib/shuffle";
+import { shuffleString } from "../../lib/processor/shuffle";
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const quiz = getQuiz();

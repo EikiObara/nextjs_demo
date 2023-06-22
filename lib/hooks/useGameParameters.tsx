@@ -1,12 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import {
-  GAME_RESULT,
-  GAME_STATE,
-  GameResult,
-  GameState,
-  Question,
-} from "./models";
-import GameJudger from "./gameJudger";
+import { Question } from "../models/models";
+import GameJudger from "../processor/gameJudger";
+import { GameState, GameResult, GAME_STATE, GAME_RESULT } from "../models/game";
 
 export type GameParameter = {
   answerOrder: string[];
@@ -24,46 +19,43 @@ export type GameCallbacks = {
 
 const useGameParameters = (
   question: Question,
-  reloadQuestion: () => void,
+  reloadQuestion: () => void
 ): [GameParameter, GameCallbacks] => {
   // NOTE: states
   const [answerOrder, setAnswerOrder] = useState<string[]>([]);
   const [words, setWords] = useState<string[]>([]);
   const [gameState, setGameState] = useState<GameState>(GAME_STATE.IN_GAME);
-  const [gameResult, setGameResult] = useState<GameResult>(GAME_RESULT.UNDEFINED);
+  const [gameResult, setGameResult] = useState<GameResult>(
+    GAME_RESULT.UNDEFINED
+  );
 
   // NOTE: User interface
-  const clickCard = useCallback(
-    (character: string, index: number) => {
-      let tempAnswer = answerOrder;
-      tempAnswer.push(character);
-      setAnswerOrder([...tempAnswer]);
+  const clickCard = useCallback((character: string, index: number) => {
+    let tempAnswer = answerOrder;
+    tempAnswer.push(character);
+    setAnswerOrder([...tempAnswer]);
 
-      let tempWords = [...words];
-      tempWords.splice(index, 1);
+    let tempWords = [...words];
+    tempWords.splice(index, 1);
 
-      setWords([...tempWords]);
-    },
-    [words, answerOrder, setAnswerOrder, setWords]
-  );
+    setWords([...tempWords]);
+  }, []);
 
-  const reset = useCallback(
-    (question: Question) => {
-      setAnswerOrder([]);
-      setWords(question.text.shuffled);
-      setGameState(GAME_STATE.IN_GAME);
-      setGameResult(GAME_RESULT.UNDEFINED);
-    },
-    [setAnswerOrder, setWords, setGameState, setGameResult]
-  );
+  const reset = useCallback((question: Question) => {
+    setAnswerOrder([]);
+    setWords(question.text.shuffled);
+    setGameState(GAME_STATE.IN_GAME);
+    setGameResult(GAME_RESULT.UNDEFINED);
+  }, []);
 
-  const giveUp = useCallback(
-    () => {
-      setGameState(GAME_STATE.FINISHED);
-      setGameResult(GAME_RESULT.UNDEFINED);
-    },
-    [setAnswerOrder, setWords, setGameState, setGameResult]
-  );
+  const giveUp = useCallback(() => {
+    setGameState(GAME_STATE.FINISHED);
+    setGameResult(GAME_RESULT.UNDEFINED);
+  }, []);
+
+  const next = useCallback(() => {
+    reloadQuestion();
+  }, []);
 
   // NOTE: auto update process
   useEffect(() => {
@@ -89,7 +81,7 @@ const useGameParameters = (
     {
       clickCard,
       reset,
-      next: reloadQuestion,
+      next,
       giveUp,
     },
   ];

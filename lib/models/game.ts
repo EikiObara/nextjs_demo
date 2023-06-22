@@ -12,26 +12,3 @@ export const GAME_RESULT = {
 } as const;
 
 export type GameResult = (typeof GAME_RESULT)[keyof typeof GAME_RESULT];
-
-export type Question = {
-  text: {
-    original: string;
-    shuffled: string[];
-    length: number;
-    hint: string;
-  };
-};
-
-export type Quiz = {
-  text: string;
-  hint: string;
-};
-
-export type QuizList = {
-  level: number;
-  data: Quiz[];
-};
-
-export type QuizData = {
-  quiz: QuizList[];
-};

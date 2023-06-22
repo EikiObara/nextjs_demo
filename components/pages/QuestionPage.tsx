@@ -1,16 +1,17 @@
-import { GAME_STATE, Question } from "../../lib/models";
+import { Question } from "../../lib/models/models";
 import CharacterCard from "../atoms/CharacterCard";
 import CardContainer from "../molecules/CardContainer";
 import Game from "../organisms/Game";
 import AnswerContainer from "../molecules/AnswerContainer";
 import HintSentence from "../atoms/HintSentence";
-import HorizontalButtons from "../organisms/HorizontalButtons";
+import HorizontalButtons from "../templates/HorizontalButtons";
 import Button from "../atoms/Button";
-import useGameParameters from "../../lib/useGameParameters";
+import useGameParameters from "../../lib/hooks/useGameParameters";
 import ResultContainer from "../molecules/Result";
 import BackButton from "../molecules/BackButton";
 import Link from "next/link";
 import { useMemo } from "react";
+import { GAME_STATE } from "../../lib/models/game";
 
 const QuestionPage = ({
   question,
