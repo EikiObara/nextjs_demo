@@ -7,26 +7,30 @@ export type Question = {
   };
 };
 
-export type Quiz = {
+export type QuestionMaterialCsvColumn = {
   text: string;
   hint: string;
 };
 
-export type QuizList = {
-  level: number;
-  data: Quiz[];
+export type QuestionMaterial = {
+  level: number | string;
+  data: QuestionMaterialCsvColumn[];
 };
 
 export type QuizData = {
-  quiz: QuizList[];
+  quiz: QuestionMaterial[];
 };
 
-export const QUIZ_TYPE = {
-  PROGRAMMING: "PROGRAMMING",
+export const QUESTION_TYPE = {
+  CODER: "CODER",
+  PROGRAMMER: "PROGRAMMER",
+  WEB_ENGINEER: "WEB_ENGINEER",
 } as const;
 
-export type QuizType = (typeof QUIZ_TYPE)[keyof typeof QUIZ_TYPE];
+export type QuizType = (typeof QUESTION_TYPE)[keyof typeof QUESTION_TYPE];
 
 export const QUIZ_FILES = {
-  [QUIZ_TYPE.PROGRAMMING]: "programming.json",
+  [QUESTION_TYPE.CODER]: "coder.csv",
+  [QUESTION_TYPE.PROGRAMMER]: "programmer.csv",
+  [QUESTION_TYPE.WEB_ENGINEER]: "web_engineer.csv",
 } as const;

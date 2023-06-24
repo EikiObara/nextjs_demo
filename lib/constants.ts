@@ -1,7 +1,13 @@
 export const SITE_TITLE = "プログラム書いてるとよく聞く言葉クイズ";
 
 export const SITE_MAP = {
-  QUESTION_GAME: "/game/question",
+  GAME: {
+    QUESTION: {
+      CODER: "/game/question/coder",
+      PROGRAMMER: "/game/question/programmer",
+      WEB_ENGINEER: "/game/question/web-engineer",
+    },
+  },
   HOME: "/",
 };
 

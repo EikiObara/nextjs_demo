@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { Question } from "../models/models";
 import GameJudger from "../processor/gameJudger";
 import { GameCallbacks, GameParameter } from "../type_defs/questionGame";

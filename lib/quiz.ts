@@ -1,18 +1,15 @@
 import path from "path";
 import fs from "fs";
 import {
-  Quiz,
+  QuestionMaterial,
   QuizData,
   QuizType,
   QUIZ_FILES,
-  QUIZ_TYPE,
+  Question,
 } from "./models/models";
+import { shuffleString, shuffleArray } from "./processor/shuffle";
 
-const quizDirectory = path.join(process.cwd(), "public/quiz");
-
-const getRandomInt = (max: number) => {
-  return Math.floor(Math.random() * max);
-};
+const quizDirectory = path.join(process.cwd(), "public/quiz/");
 
 export const readQuizJson = (type: QuizType): QuizData => {
   const file = fs.readFileSync(
@@ -23,12 +20,44 @@ export const readQuizJson = (type: QuizType): QuizData => {
   return JSON.parse(file);
 };
 
-export const getQuiz = (): Quiz => {
-  const quizData: QuizData = readQuizJson(QUIZ_TYPE.PROGRAMMING);
+export const readQuestionMaterialCsv = (type: QuizType): QuestionMaterial => {
+  const programmingQuestionDirectory = path.join(
+    process.cwd(),
+    "public/quiz/programming"
+  );
 
-  const level: number = getRandomInt(quizData.quiz.length);
+  const file = fs.readFileSync(
+    path.join(programmingQuestionDirectory, QUIZ_FILES[type]),
+    "utf8"
+  );
 
-  const quizList = quizData.quiz[level].data;
+  const data: string[] = file.split("\n");
 
-  return quizList[getRandomInt(quizList.length)];
+  return {
+    level: type,
+    data: data.map((e) => {
+      const params = e.split(",");
+      return {
+        text: params[0],
+        hint: params[1],
+      };
+    }),
+  };
+};
+
+export const createShuffledQuestions = (type: QuizType): Question[] => {
+  const questionMaterial: QuestionMaterial = readQuestionMaterialCsv(type);
+
+  const questions = questionMaterial.data.map((q) => {
+    return {
+      text: {
+        original: q.text,
+        shuffled: shuffleString(q.text).split(""),
+        length: q.text.length,
+        hint: q.hint,
+      },
+    };
+  });
+
+  return shuffleArray(questions);
 };
