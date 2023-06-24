@@ -10,7 +10,22 @@ const HomePage = () => {
         <div className={fontStyles.title}>{SITE_TITLE}</div>
       </div>
       <div className={styles.buttons}>
-        <LinkButton text="始める" url={SITE_MAP.QUESTION_GAME} />
+        <div className={styles.button}>Level</div>
+        <div className={styles.button}>
+          <LinkButton text="Coder" url={SITE_MAP.GAME.QUESTION.CODER} />
+        </div>
+        <div className={styles.button}>
+          <LinkButton
+            text="Programmer"
+            url={SITE_MAP.GAME.QUESTION.PROGRAMMER}
+          />
+        </div>
+        <div className={styles.button}>
+          <LinkButton
+            text="Web Engineer"
+            url={SITE_MAP.GAME.QUESTION.WEB_ENGINEER}
+          />
+        </div>
       </div>
     </div>
   );
