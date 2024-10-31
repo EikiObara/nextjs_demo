@@ -7,4 +7,9 @@
   padding: 1vh 2vw;
 
   cursor: pointer;
+
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
 }

@@ -1,0 +1,29 @@
+.appTemplate {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 98vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 1rem 1rem;
+
+  .main {
+    width: 100%;
+    height: 100%;
+    flex: 1 1 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer {
+    width: 100%;
+    height: 2vh;
+    position: fixed;
+
+    text-align: center;
+    bottom: 0;
+  }
+}
